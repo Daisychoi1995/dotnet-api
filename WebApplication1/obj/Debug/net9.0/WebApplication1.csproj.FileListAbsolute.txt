@@ -54,3 +54,10 @@
 /Users/hyeji/dotnet/WebApplication1/WebApplication1.Api/obj/Debug/net9.0/WebApplication1.pdb
 /Users/hyeji/dotnet/WebApplication1/WebApplication1.Api/obj/Debug/net9.0/WebApplication1.genruntimeconfig.cache
 /Users/hyeji/dotnet/WebApplication1/WebApplication1.Api/obj/Debug/net9.0/ref/WebApplication1.dll
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/bin/Debug/net9.0/MinimalApis.Extensions.dll
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/bin/Debug/net9.0/MiniValidation.dll
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/obj/Debug/net9.0/WebApplication1.csproj.AssemblyReference.cache
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/obj/Debug/net9.0/WebApplication1.MvcApplicationPartsAssemblyInfo.cs
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/obj/Debug/net9.0/WebApplication1.sourcelink.json
+/Users/hyeji/dotnet/WebApplication1/WebApplication1/obj/Debug/net9.0/WebAppli.7D14BD69.Up2Date

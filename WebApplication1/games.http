@@ -8,19 +8,18 @@ POST http://localhost:5215/games
 Content-Type: application/json
 
 {
-  "name": "Pixel Racers",
-  "genre": "Racing",
+  "name": "PixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixel",
+  "genre": "Racing!!",
   "price": 29.99,
   "releaseDate": "2023-07-15"
 }
 
 ###
-PUT http://localhost:5215/games/5
+PUT http://localhost:5215/games/2
 Content-Type: application/json
 
 {
   "name": "Pixel",
-  "genre": "Racing!!",
   "price": 19.99,
   "releaseDate": "2023-07-15"
 }

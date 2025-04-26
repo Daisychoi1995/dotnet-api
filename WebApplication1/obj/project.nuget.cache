@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uXkga2hPW0s=",
+  "dgSpecHash": "F0Vz+nnvEUI=",
   "success": true,
   "projectFilePath": "/Users/hyeji/dotnet/WebApplication1/WebApplication1/WebApplication1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/hyeji/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/hyeji/.nuget/packages/minimalapis.extensions/0.11.0/minimalapis.extensions.0.11.0.nupkg.sha512",
+    "/Users/hyeji/.nuget/packages/minivalidation/0.8.0/minivalidation.0.8.0.nupkg.sha512"
+  ],
   "logs": []
 }
