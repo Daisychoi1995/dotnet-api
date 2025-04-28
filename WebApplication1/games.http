@@ -8,8 +8,8 @@ POST http://localhost:5215/games
 Content-Type: application/json
 
 {
-  "name": "PixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixelPixel",
-  "genre": "Racing!!",
+  "name": "Hyeji's game",
+  "genreId": 5,
   "price": 29.99,
   "releaseDate": "2023-07-15"
 }

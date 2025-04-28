@@ -44,7 +44,17 @@ public static class GamesEndpoints
           ReleaseDate= newGame.ReleaseDate
       };
       dbContext.Games.Add(game);
-      return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
+      dbContext.SaveChanges();
+
+      GameDto gameDto = new(
+        game.Id,
+        game.Name,
+        game.Genre!.Name,
+        game.Price,
+        game.ReleaseDate
+      );
+
+      return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, gameDto);
     })
     .WithParameterValidation();
 
