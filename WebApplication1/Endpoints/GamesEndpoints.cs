@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Dtos;
 using WebApplication1.Entities;
@@ -23,7 +24,12 @@ public static class GamesEndpoints
                    .WithParameterValidation();
 
     // GET /games
-    group.MapGet("/", () => games);
+    group.MapGet("/", (GameStoreContext dbContext) => 
+      dbContext.Games
+               .Include(game => game.Genre)
+               .Select(game => game.ToGameSummaryDto())
+               .AsNoTracking()
+      );
 
     // GET /games/id
     group.MapGet("/{id}", (int id, GameStoreContext dbContext) => {
@@ -49,19 +55,19 @@ public static class GamesEndpoints
     .WithParameterValidation();
 
     // PUT /games/id
-    group.MapPut("/{id}", (int id, UpdateGameDto updatedGame) => {
-      var index = games.FindIndex(game => game.Id == id);
+    group.MapPut("/{id}", (int id, UpdateGameDto updatedGame, GameStoreContext dbContext) => 
+    {
+      var existingGame = dbContext.Games.Find(id);
 
-      if(index == -1) {
+      if(existingGame is null) {
         return Results.NotFound();
       }
-      games[index] = new GameSummaryDto(
-        id, 
-        updatedGame.Name,
-        updatedGame.Genre,
-        updatedGame.Price,
-        updatedGame.ReleaseDate
-      );
+      
+      dbContext.Entry(existingGame)
+               .CurrentValues
+               .SetValues(updatedGame.ToEntity(id));
+
+      dbContext.SaveChanges();
 
       return Results.NoContent();
     });
