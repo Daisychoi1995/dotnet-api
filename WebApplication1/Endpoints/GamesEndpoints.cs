@@ -10,7 +10,7 @@ public static class GamesEndpoints
 {
   const string GetGameEndpointName = "GetGame";
 
-  private static readonly List<GameDto> games = [
+  private static readonly List<GameSummaryDto> games = [
       new (1, "Pixel Racers", "Racing", 29.99m, new DateOnly(2023, 7, 15)),
       new (2, "Mystic Realms", "RPG", 49.99m, new DateOnly(2022, 11, 5)),
       new (3, "Block Builder Pro", "Simulation", 19.99m, new DateOnly(2024, 3, 10))
@@ -26,11 +26,11 @@ public static class GamesEndpoints
     group.MapGet("/", () => games);
 
     // GET /games/id
-    group.MapGet("/{id}", (int id) => {
+    group.MapGet("/{id}", (int id, GameStoreContext dbContext) => {
 
-      GameDto? game = games.Find(game => game.Id == id);
+      Game ? game = dbContext.Games.Find(id);
 
-      return game is null ? Results.NotFound() : Results.Ok(game);
+      return game is null ? Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
         })
       .WithName(GetGameEndpointName);
 
@@ -38,14 +38,13 @@ public static class GamesEndpoints
     group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) => 
     {
       Game game = newGame.ToEntity();
-      game.Genre = dbContext.Genres.Find(newGame.GenreId);
       
       dbContext.Games.Add(game);
       dbContext.SaveChanges();
 
       return Results.CreatedAtRoute(
         GetGameEndpointName, new { id = game.Id }, 
-        game.ToDto());
+        game.ToGameDetailsDto());
     })
     .WithParameterValidation();
 
@@ -56,7 +55,7 @@ public static class GamesEndpoints
       if(index == -1) {
         return Results.NotFound();
       }
-      games[index] = new GameDto(
+      games[index] = new GameSummaryDto(
         id, 
         updatedGame.Name,
         updatedGame.Genre,
